@@ -28,7 +28,7 @@ struct Item: Identifiable {
     let name: String
     let id = UUID()
 }
-
+//Observable Object allows instances of this class to be used inside of views, so that when changes happen the view will reload
 class Model: ObservableObject {
     @Published var meals: [Item] = menuItems()
     
