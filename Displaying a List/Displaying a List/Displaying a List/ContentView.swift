@@ -28,6 +28,15 @@ struct Item: Identifiable {
     let name: String
     let id = UUID()
 }
+
+//What @Published does:
+//When you mark a property (in this case, meals) with @Published, it tells SwiftUI that any changes to this property should trigger a view update. In your code, meals is marked with @Published, so whenever meals is modified, the SwiftUI view (ContentView) will automatically refresh and display the new data.
+//
+//How it works:
+//The Model class conforms to the ObservableObject protocol, which allows it to be observed by SwiftUI views.
+//The @ObservedObject property wrapper in the ContentView marks the model instance. This lets SwiftUI know that changes in the model's published properties (like meals) should trigger a view update.
+//When meals (marked as @Published) changes, SwiftUI automatically detects the change and re-renders the view that depends on it (in this case, the List inside ContentView).
+//In summary, @Published is crucial for making the property reactive, so when the meals list is updated, the List displaying the meals in ContentView is refreshed without manual intervention.
 //Observable Object allows instances of this class to be used inside of views, so that when changes happen the view will reload
 class Model: ObservableObject {
     @Published var meals: [Item] = menuItems()
